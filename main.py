@@ -16,7 +16,7 @@ config = config_lib.Config(".env")
 redis_client = redis.Redis(
     host=config("REDIS_HOST", default="localhost"),
     port=config("REDIS_PORT", cast=int, default=6379),
-    db=config("REDIS_DB", default="ave"))
+    db=config("REDIS_DB", cast=int, default=0))
 
 
 class Details(BaseModel):

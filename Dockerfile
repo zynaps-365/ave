@@ -1,6 +1,10 @@
 # Use a Python image with uv pre-installed
 FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
+#
+RUN apt-get update
+RUN apt-get install -y redis-server
+
 # Install the project into `/app`
 WORKDIR /app
 
