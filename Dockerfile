@@ -21,13 +21,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 # Reset the entrypoint, don't invoke `uv`
 ENTRYPOINT []
 
-# Create a non-root user and group
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-
-# Change ownership of app files to the new user
-RUN chown -R appuser:appgroup /app
-
-# Switch to the non-root user
-USER appuser
-
 CMD ["fastapi", "run", "main.py", "--port", "8090"]
