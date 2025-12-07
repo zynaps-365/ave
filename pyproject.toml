@@ -8,4 +8,5 @@ dependencies = [
     "phonenumbers>=9.0.20",
     "pydantic-extra-types>=2.10.6",
     "redis>=7.1.0",
+    "starlette>=0.50.0",
 ]
