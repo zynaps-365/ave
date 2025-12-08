@@ -11,7 +11,7 @@ PhoneNumberType = typing.Annotated[
 ]
 
 app = fastapi.FastAPI(title="Phone Cache", version="1.0.0")
-config = config_lib.Config(".env")
+config = config_lib.Config("../.env")
 
 redis_client = redis.Redis(
     host=config("REDIS_HOST", default="localhost"),

@@ -26,4 +26,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 ENTRYPOINT []
 
 # Set default startup command
-CMD ["fastapi", "run", "main.py", "--port", "8090"]
+CMD ["fastapi", "run", "src/main.py", "--port", "8090"]
