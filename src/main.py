@@ -1,13 +1,13 @@
+import pydantic
 import typing
 import phonenumbers
 import fastapi
 from redis import asyncio as redis
-from pydantic_extra_types.phone_numbers import PhoneNumberValidator
-from pydantic import BaseModel
+from pydantic_extra_types import phone_numbers
 from starlette import config as config_lib
 
 PhoneNumberType = typing.Annotated[
-    typing.Union[str, phonenumbers.PhoneNumber], PhoneNumberValidator(number_format="E164")
+    typing.Union[str, phonenumbers.PhoneNumber], phone_numbers.PhoneNumberValidator(number_format="E164")
 ]
 
 app = fastapi.FastAPI(title="Phone Cache", version="1.0.0")
@@ -19,9 +19,9 @@ redis_client = redis.Redis(
     db=config("REDIS_DB", cast=int, default=0))
 
 
-class Customer(BaseModel):
+class Customer(pydantic.BaseModel):
     address: str
-    phone: PhoneNumberType = None
+    phone: PhoneNumberType = None  # TODO: store/validate phone as int
 
 
 async def get_details(phone: PhoneNumberType) -> Customer:
